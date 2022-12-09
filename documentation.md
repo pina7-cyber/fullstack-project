@@ -1,4 +1,4 @@
-# työaikakirjanpito
+# time recording
 
 | date  | hours | activity  |
 | :----:|:-----| :-----|
