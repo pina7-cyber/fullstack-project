@@ -2,5 +2,5 @@
 
 | date  | hours | activity  |
 | :----:|:-----| :-----|
-| 09.12 | 3    | project setup |
+| 09.12 | 0    | project setup |
 | total   |    | | 
