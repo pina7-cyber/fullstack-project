@@ -9,12 +9,13 @@ export const ALL_USERS = gql`
     }
   }
 `
+
 export const ALL_TOPICS = gql`
-  query AllTopics($category: String, $keyword: String) {
-    allTopics(category: $category, keyword: $keyword) {
+  query AllTopics($category: String, $allTopicsId: ID, $keyword: String) {
+    allTopics(category: $category, id: $allTopicsId, keyword: $keyword) {
+      categories
       content
       comments
-      categories
       keywords
       id
     }

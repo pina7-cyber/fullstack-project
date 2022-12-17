@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom"
 import Home from "./components/Home"
 import Topics from "./components/Topics"
 import NavBar from "./components/NavBar"
+import Topic from "./components/Topic"
 import CssBaseline from "@mui/material/CssBaseline"
 import { useQuery } from "@apollo/client"
 import { ALL_TOPICS } from "./queries"
@@ -30,6 +31,10 @@ const App = () => {
             <Route
               path='/topics'
               element={<Topics topics={topics.data.allTopics} />}
+            />
+            <Route
+              path='/topics/:id'
+              element={<Topic topics={topics.data.allTopics} />}
             />
             <Route path='/' element={<Home />} />
           </Routes>
