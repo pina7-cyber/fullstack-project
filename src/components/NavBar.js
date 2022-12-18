@@ -12,8 +12,10 @@ import Button from "@mui/material/Button"
 import MenuItem from "@mui/material/MenuItem"
 import FlutterDashIcon from "@mui/icons-material/FlutterDash"
 import Logout from "./Logout"
+import Brightness4Icon from "@mui/icons-material/Brightness4"
+import Brightness7Icon from "@mui/icons-material/Brightness7"
 
-function NavBar() {
+function NavBar({ theme, colorMode }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null)
 
   const handleOpenNavMenu = (event) => {
@@ -130,7 +132,15 @@ function NavBar() {
               </Button>
             ))}
           </Box>
-
+          <Box sx={{ flexGrow: 0 }}>
+            <IconButton onClick={colorMode.toggleColorMode} color='inherit'>
+              {theme.palette.mode === "dark" ? (
+                <Brightness7Icon />
+              ) : (
+                <Brightness4Icon />
+              )}
+            </IconButton>
+          </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Logout />
           </Box>

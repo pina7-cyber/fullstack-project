@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom"
+import React from "react"
 import Home from "./components/Home"
 import Topics from "./components/Topics"
 import NavBar from "./components/NavBar"
@@ -7,8 +8,12 @@ import CssBaseline from "@mui/material/CssBaseline"
 import { useQuery } from "@apollo/client"
 import { ALL_TOPICS } from "./queries"
 import { ALL_USERS } from "./queries"
+import { useTheme } from "@mui/material/styles"
+import { useColorMode } from "./theme"
 
 const App = () => {
+  const theme = useTheme()
+  const colorMode = useColorMode()
   const topics = useQuery(ALL_TOPICS)
   const users = useQuery(ALL_USERS)
 
@@ -24,7 +29,7 @@ const App = () => {
       <CssBaseline />
       <div>
         <div>
-          <NavBar />
+          <NavBar theme={theme} colorMode={colorMode} />
         </div>
         <div>
           <Routes>
