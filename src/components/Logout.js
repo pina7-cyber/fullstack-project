@@ -2,7 +2,7 @@ import { IconButton } from "@mui/material"
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined"
 import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined"
 import Backdrop from "@mui/material/Backdrop"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import LoginForm from "./LoginForm"
 import { useApolloClient } from "@apollo/client"
 
@@ -11,6 +11,13 @@ const Logout = () => {
   const [token, setToken] = useState(null)
   console.log(open)
   const client = useApolloClient()
+
+  useEffect(() => {
+    const localToken = window.localStorage.getItem("topixx-user-token")
+    if (localToken) {
+      setToken(localToken)
+    }
+  }, [])
 
   const handleLogout = (event) => {
     setToken(null)
@@ -22,13 +29,13 @@ const Logout = () => {
   const handleToggle = () => setOpen(!open)
 
   if (token) {
-    console.log("logout")
     return (
       <IconButton color='inherit' onClick={handleLogout}>
         <LogoutOutlinedIcon />
       </IconButton>
     )
   }
+
   return (
     <div>
       <IconButton color='inherit' onClick={handleToggle}>
@@ -40,7 +47,7 @@ const Logout = () => {
         open={open}
         onClick={handleClose}
       >
-        <LoginForm setToken={setToken} />
+        <LoginForm handleClose={handleClose} setToken={setToken} />
       </Backdrop>
     </div>
   )

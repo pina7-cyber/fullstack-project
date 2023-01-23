@@ -76,6 +76,7 @@ const LoginForm = (props) => {
     } else if (isLogin === false) {
       console.log("signup")
     }
+    props.handleClose()
   }
 
   const formHeight = () => (isLogin ? "400px" : "500px")
