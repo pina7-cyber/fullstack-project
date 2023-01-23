@@ -7,4 +7,5 @@
 |  | 9:00pm-00:25am    |3    | frontend: react components: NavBar.js, Topics.js, and Topic.js  |
 | 18.12 | 2:00am-3:00am    |1    | frontend: implementation of MUI theme with toggleable mode (dark/light)  |
 | 20.12 | 7:40pm-11:00pm    |3    | backend: connecting MongoDB, adjusting queries and mutations, adding login functionality, testing with apollo sandbox and correcting errors   |
+| 22.01 | 6:45pm-08:45pm    |2    | backend: refactoring. frontend: trying to add login functionality. to be continued.   |
 | total   |    | | | 
