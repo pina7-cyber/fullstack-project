@@ -9,7 +9,7 @@ import { useApolloClient } from "@apollo/client"
 const Logout = () => {
   const [open, setOpen] = useState(false)
   const [token, setToken] = useState(null)
-
+  console.log(open)
   const client = useApolloClient()
 
   const handleLogout = (event) => {
@@ -18,12 +18,8 @@ const Logout = () => {
     client.resetStore()
   }
 
-  const handleClose = () => {
-    setOpen(false)
-  }
-  const handleToggle = () => {
-    setOpen(!open)
-  }
+  const handleClose = () => setOpen(false)
+  const handleToggle = () => setOpen(!open)
 
   if (token) {
     console.log("logout")
@@ -38,6 +34,7 @@ const Logout = () => {
       <IconButton color='inherit' onClick={handleToggle}>
         <LoginOutlinedIcon />
       </IconButton>
+
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={open}
