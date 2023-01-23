@@ -17,7 +17,7 @@ import { useIsFilled } from "../hooks/index"
 const LoginForm = (props) => {
   const client = useApolloClient()
 
-  const [login, result] = useMutation(LOGIN, {
+  const [Login, result] = useMutation(LOGIN, {
     onError: (error) => {
       console.log("error")
     },
@@ -65,7 +65,7 @@ const LoginForm = (props) => {
         username: values.username,
         password: values.password,
       }
-      login({ variables: loginData })
+      Login({ variables: loginData })
       setValues({
         username: "",
         password: "",
@@ -195,8 +195,8 @@ const LoginForm = (props) => {
                 onClick={() => setisLogin(!isLogin)}
               >
                 <Typography variant='caption'>
-                  {isLogin ? `No Account? ` : "Back to Login"}
-                  {isLogin && <b>Signup!</b>}
+                  {isLogin ? `Don't have an account? ` : "Back to Login"}
+                  {isLogin && <b>Sign up</b>}
                 </Typography>
               </Button>
             </Grid>
