@@ -9,4 +9,5 @@
 | 20.12 | 7:40pm-11:00pm    |3    | backend: connecting MongoDB, adjusting queries and mutations, adding login functionality, testing with apollo sandbox and correcting errors   |
 | 22.01 | 6:45pm-08:45pm    |2    | backend: refactoring. frontend: trying to add login functionality. to be continued.   |
 | 23.01 | 3:30pm-06:30pm    |3   | frontend: Adding LoginForm with Backdrop by click on button. Trying to fix login functionality. Still not working.   |
+| 23.01 | 8:00pm-9:00pm    |1   | Finally fixed bug regarding login functionality --> resolver.js in backend   |
 | total   |    | | | 
