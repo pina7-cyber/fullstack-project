@@ -3,14 +3,19 @@ import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined"
 import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined"
 import Backdrop from "@mui/material/Backdrop"
 import { useState } from "react"
-import CircularProgress from "@mui/material/CircularProgress"
+import LoginForm from "./LoginForm"
+import { useApolloClient } from "@apollo/client"
 
 const Logout = () => {
   const [open, setOpen] = useState(false)
-  const localToken = window.localStorage.getItem("topixx-user-token")
+  const [token, setToken] = useState(null)
+
+  const client = useApolloClient()
 
   const handleLogout = (event) => {
-    console.log("logout")
+    setToken(null)
+    localStorage.clear()
+    client.resetStore()
   }
 
   const handleClose = () => {
@@ -20,7 +25,7 @@ const Logout = () => {
     setOpen(!open)
   }
 
-  if (localToken) {
+  if (token) {
     console.log("logout")
     return (
       <IconButton color='inherit' onClick={handleLogout}>
@@ -38,7 +43,7 @@ const Logout = () => {
         open={open}
         onClick={handleClose}
       >
-        <CircularProgress color='inherit' />
+        <LoginForm setToken={setToken} />
       </Backdrop>
     </div>
   )
