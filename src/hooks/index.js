@@ -24,3 +24,42 @@ export const useIsFilled = (props) => {
     full,
   }
 }
+
+export const useNotification = () => {
+  const [message, setMessage] = useState({
+    content: "",
+    severity: "",
+    available: false,
+  })
+  console.log("in hook message", message)
+
+  const setNotification = (content, severity) => {
+    console.log("in hook setNoti", content)
+    setMessage({
+      content: content,
+      severity: severity,
+      available: true,
+    })
+    setTimeout(() => {
+      setMessage({
+        content: "",
+        severity: "",
+        available: false,
+      })
+    }, 5000)
+  }
+
+  const removeNotification = () => {
+    setMessage({
+      content: "",
+      severity: "",
+      available: false,
+    })
+  }
+
+  return {
+    message,
+    setNotification,
+    removeNotification,
+  }
+}

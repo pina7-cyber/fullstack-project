@@ -4,6 +4,7 @@ import Home from "./components/Home"
 import Topics from "./components/Topics"
 import NavBar from "./components/NavBar"
 import Topic from "./components/Topic"
+import Notification from "./components/Notification"
 import CssBaseline from "@mui/material/CssBaseline"
 import { useQuery } from "@apollo/client"
 import { ALL_TOPICS } from "./queries"
@@ -29,7 +30,10 @@ const App = () => {
     <>
       <CssBaseline />
 
+      
+
       <NavBar theme={theme} colorMode={colorMode} />
+      <Notification />
 
       <Routes>
         <Route
