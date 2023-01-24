@@ -82,6 +82,7 @@ const LoginForm = (props) => {
       isFilled.fill("password", "")
     } else if (isLogin === false) {
       console.log("signup")
+      console.log(values.name)
       const signupData = !values.name.replace(/\s/g, "").length //string only contains whitespace (ie. empty, spaces, tabs or line breaks)
         ? {
             username: values.username,
@@ -101,7 +102,6 @@ const LoginForm = (props) => {
       })
       isFilled.fill("username", "")
       isFilled.fill("password", "")
-      isFilled.fill("name", "")
     }
     props.handleClose()
   }
