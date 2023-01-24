@@ -15,7 +15,7 @@ import Logout from "./Logout"
 import Brightness4Icon from "@mui/icons-material/Brightness4"
 import Brightness7Icon from "@mui/icons-material/Brightness7"
 
-function NavBar({ theme, colorMode }) {
+function NavBar({ setNotification, theme, colorMode }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null)
 
   const handleOpenNavMenu = (event) => {
@@ -142,7 +142,7 @@ function NavBar({ theme, colorMode }) {
             </IconButton>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <Logout />
+            <Logout setNotification={setNotification} />
           </Box>
         </Toolbar>
       </Container>

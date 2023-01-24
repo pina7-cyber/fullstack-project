@@ -5,12 +5,11 @@ import Backdrop from "@mui/material/Backdrop"
 import { useState, useEffect } from "react"
 import LoginForm from "./LoginForm"
 import { useApolloClient } from "@apollo/client"
-import { useNotification } from "../hooks"
 
-const Logout = () => {
+const Logout = ({ setNotification }) => {
   const [open, setOpen] = useState(false)
   const [token, setToken] = useState(null)
-  const notification = useNotification()
+
   const client = useApolloClient()
 
   useEffect(() => {
@@ -24,7 +23,7 @@ const Logout = () => {
     setToken(null)
     localStorage.clear()
     client.resetStore()
-    notification.setNotification("successfully logged out", "info")
+    setNotification("successfully logged out", "info")
   }
 
   const handleClose = () => setOpen(false)

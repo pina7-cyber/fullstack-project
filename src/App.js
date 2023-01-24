@@ -9,7 +9,7 @@ import CssBaseline from "@mui/material/CssBaseline"
 import { useQuery } from "@apollo/client"
 import { ALL_TOPICS } from "./queries"
 import { ALL_USERS } from "./queries"
-
+import { useNotification } from "./hooks"
 import { useTheme } from "@mui/material/styles"
 import { useColorMode } from "./theme"
 
@@ -18,6 +18,9 @@ const App = () => {
   const colorMode = useColorMode()
   const topics = useQuery(ALL_TOPICS)
   const users = useQuery(ALL_USERS)
+  const notification = useNotification()
+
+  console.log("reload")
 
   if (topics.loading) {
     return <div>loading...</div>
@@ -29,11 +32,15 @@ const App = () => {
   return (
     <>
       <CssBaseline />
-
-      
-
-      <NavBar theme={theme} colorMode={colorMode} />
-      <Notification />
+      <NavBar
+        setNotification={notification.setNotification}
+        theme={theme}
+        colorMode={colorMode}
+      />
+      <Notification
+        message={notification.message}
+        removeNotification={notification.removeNotification}
+      />
 
       <Routes>
         <Route
