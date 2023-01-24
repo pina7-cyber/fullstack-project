@@ -10,4 +10,5 @@
 | 22.01 | 6:45pm-08:45pm    |2    | backend: refactoring. frontend: trying to add login functionality. to be continued.   |
 | 23.01 | 3:30pm-06:30pm    |3   | frontend: Adding LoginForm with Backdrop by click on button. Trying to fix login functionality. Still not working.   |
 | 23.01 | 8:00pm-9:00pm    |1   | Finally fixed bug regarding login functionality --> resolver.js in backend   |
+| 23.01 | 9:00pm-10:30pm    |1.5   | frontend: Adding Notification.js with useNotification-hook. Not working yet: hook-state is not automatically updated in Notification.js --> notifications not visible.   |
 | total   |    | | | 
