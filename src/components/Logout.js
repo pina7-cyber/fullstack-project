@@ -23,7 +23,7 @@ const Logout = ({ setNotification }) => {
     setToken(null)
     localStorage.clear()
     client.resetStore()
-    setNotification("successfully logged out", "info")
+    setNotification("successfully logged out", "success")
   }
 
   const handleClose = () => setOpen(false)
@@ -48,7 +48,11 @@ const Logout = ({ setNotification }) => {
         open={open}
         onClick={handleClose}
       >
-        <LoginForm handleClose={handleClose} setToken={setToken} />
+        <LoginForm
+          handleClose={handleClose}
+          setToken={setToken}
+          setNotification={setNotification}
+        />
       </Backdrop>
     </div>
   )

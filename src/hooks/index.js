@@ -31,10 +31,8 @@ export const useNotification = () => {
     severity: "",
     available: false,
   })
-  console.log("in hook message", message)
 
   const setNotification = (content, severity) => {
-    console.log("in hook setNoti", content)
     setMessage({
       content: content,
       severity: severity,

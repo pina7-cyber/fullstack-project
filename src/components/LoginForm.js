@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useMutation } from "@apollo/client"
 import { LOGIN } from "../queries"
+import { CREATE_USER } from "../queries"
 import { useApolloClient } from "@apollo/client"
 import IconButton from "@mui/material/IconButton"
 import Input from "@mui/material/Input"
@@ -17,20 +18,26 @@ import { useIsFilled } from "../hooks/index"
 const LoginForm = (props) => {
   const client = useApolloClient()
 
-  const [Login, result] = useMutation(LOGIN, {
+  const [Login, loginResult] = useMutation(LOGIN, {
     onError: (error) => {
-      console.log("error")
+      props.setNotification(error.graphQLErrors[0].message, "error")
+    },
+  })
+
+  const [CreateUser, userResult] = useMutation(CREATE_USER, {
+    onError: (error) => {
+      props.setNotification(error.graphQLErrors[0].message, "error")
     },
   })
 
   useEffect(() => {
-    if (result.data) {
-      const token = result.data.login.value
+    if (loginResult.data) {
+      const token = loginResult.data.login.value
       props.setToken(token)
       localStorage.setItem("topixx-user-token", token)
       client.resetStore()
     }
-  }, [result.data]) // eslint-disable-line
+  }, [loginResult.data]) // eslint-disable-line
 
   const [values, setValues] = useState({
     password: "",
@@ -75,6 +82,26 @@ const LoginForm = (props) => {
       isFilled.fill("password", "")
     } else if (isLogin === false) {
       console.log("signup")
+      const signupData = !values.name.replace(/\s/g, "").length //string only contains whitespace (ie. empty, spaces, tabs or line breaks)
+        ? {
+            username: values.username,
+            password: values.password,
+          }
+        : {
+            username: values.username,
+            password: values.password,
+            name: values.name,
+          }
+      CreateUser({ variables: signupData })
+      setValues({
+        username: "",
+        password: "",
+        name: "",
+        showPassword: false,
+      })
+      isFilled.fill("username", "")
+      isFilled.fill("password", "")
+      isFilled.fill("name", "")
     }
     props.handleClose()
   }
@@ -187,7 +214,7 @@ const LoginForm = (props) => {
                 disabled={!isFilled.full()}
                 type='submit'
               >
-                {isLogin ? "login" : "Let's go!"}
+                {isLogin ? "login" : "Sign up"}
               </Button>
             </Grid>
             <Grid item>
@@ -196,8 +223,9 @@ const LoginForm = (props) => {
                 onClick={() => setisLogin(!isLogin)}
               >
                 <Typography variant='caption'>
-                  {isLogin ? `Don't have an account? ` : "Back to Login"}
-                  {isLogin && <b>Sign up</b>}
+                  {isLogin ? `Don't have an account? ` : "Have an account? "}
+                  {isLogin && <b>Sign up!</b>}
+                  {!isLogin && <b>Log in!</b>}
                 </Typography>
               </Button>
             </Grid>
