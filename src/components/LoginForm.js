@@ -44,9 +44,15 @@ const LoginForm = (props) => {
       )
       Login({
         variables: {
-          username: userResult.data.createUser.username,
-          password: userResult.data.createUser.password,
+          username: values.username,
+          password: values.password,
         },
+      })
+      setValues({
+        username: "",
+        password: "",
+        name: "",
+        showPassword: false,
       })
     }
   }, [loginResult.data, userResult.data]) // eslint-disable-line
@@ -104,12 +110,6 @@ const LoginForm = (props) => {
             name: values.name,
           }
       CreateUser({ variables: signupData })
-      setValues({
-        username: "",
-        password: "",
-        name: "",
-        showPassword: false,
-      })
 
       isFilled.fill("username", "")
       isFilled.fill("password", "")
