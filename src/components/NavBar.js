@@ -11,7 +11,7 @@ import { Link } from "react-router-dom"
 import Button from "@mui/material/Button"
 import MenuItem from "@mui/material/MenuItem"
 import FlutterDashIcon from "@mui/icons-material/FlutterDash"
-import Logout from "./Logout"
+import Login from "./Login"
 import Brightness4Icon from "@mui/icons-material/Brightness4"
 import Brightness7Icon from "@mui/icons-material/Brightness7"
 
@@ -142,7 +142,7 @@ function NavBar({ setNotification, theme, colorMode }) {
             </IconButton>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <Logout setNotification={setNotification} />
+            <Login setNotification={setNotification} />
           </Box>
         </Toolbar>
       </Container>

@@ -162,9 +162,7 @@ const LoginForm = (props) => {
             {isLogin === false && (
               <Grid item>
                 <FormControl sx={{ m: 2, width: "25ch" }} variant='standard'>
-                  <InputLabel htmlFor='standard-adornment-password'>
-                    Name
-                  </InputLabel>
+                  <InputLabel>Name</InputLabel>
                   <Input
                     id='name'
                     type='text'
@@ -176,9 +174,7 @@ const LoginForm = (props) => {
             )}
             <Grid item>
               <FormControl sx={{ m: 2, width: "25ch" }} variant='standard'>
-                <InputLabel htmlFor='standard-adornment-password'>
-                  Username
-                </InputLabel>
+                <InputLabel required={true}>Username</InputLabel>
                 <Input
                   id='username'
                   type='text'
@@ -189,20 +185,14 @@ const LoginForm = (props) => {
             </Grid>
             <Grid item>
               <FormControl sx={{ m: 2, width: "25ch" }} variant='standard'>
-                <InputLabel htmlFor='standard-adornment-password'>
-                  Password
-                </InputLabel>
+                <InputLabel required={true}>Password</InputLabel>
                 <Input
-                  id='standard-adornment-password'
                   type={values.showPassword ? "text" : "password"}
                   value={values.password}
                   onChange={handleChange("password")}
                   endAdornment={
                     <InputAdornment position='end'>
-                      <IconButton
-                        aria-label='toggle password visibility'
-                        onClick={handleClickShowPassword}
-                      >
+                      <IconButton onClick={handleClickShowPassword}>
                         {values.showPassword ? (
                           <VisibilityOff />
                         ) : (
