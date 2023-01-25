@@ -23,12 +23,13 @@ const Logout = ({ logout }) => {
     setAnchorElNav(null)
   }
 
-  const name =
-    user.data && user.data.name
-      ? user.data.name
-      : user.data
-      ? user.data.username
+  const name = user.data
+    ? user.data.me
+      ? user.data.me.name
+        ? user.data.me.name
+        : user.data.me.username
       : null
+    : null
 
   const menuItems = [
     {
