@@ -37,7 +37,13 @@ const LoginForm = (props) => {
       localStorage.setItem("topixx-user-token", token)
       client.resetStore()
     }
-  }, [loginResult.data]) // eslint-disable-line
+    if (userResult.data) {
+      props.setNotification(
+        `Welcome ${userResult.data.createUser.username}! An Account has been created. Log in! `,
+        "success"
+      )
+    }
+  }, [loginResult.data, userResult.data]) // eslint-disable-line
 
   const [values, setValues] = useState({
     password: "",
