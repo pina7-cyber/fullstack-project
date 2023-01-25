@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export const useIsFilled = (props) => {
   const [values, setValues] = useState(props)
@@ -59,5 +59,40 @@ export const useNotification = () => {
     message,
     setNotification,
     removeNotification,
+  }
+}
+
+export const useAuth = () => {
+  const [token, setTok] = useState(null)
+  const [loginTimeout, setLoginTimeout] = useState(null)
+
+  useEffect(() => {
+    const localToken = window.localStorage.getItem("topixx-user-token")
+    if (localToken) {
+      setToken(localToken)
+    }
+  }, [])
+
+  const setToken = (token) => {
+    setTok(token)
+    localStorage.setItem("topixx-user-token", token)
+    setLoginTimeout(setTimeout(clearToken, 5000))
+  }
+
+  const clearToken = () => {
+    setTok(null)
+    localStorage.clear()
+  }
+
+  const resetLoginTimeout = () => {
+    clearTimeout(loginTimeout)
+    setLoginTimeout(setTimeout(clearToken, 5000))
+  }
+
+  return {
+    setToken,
+    clearToken,
+    token,
+    resetLoginTimeout,
   }
 }

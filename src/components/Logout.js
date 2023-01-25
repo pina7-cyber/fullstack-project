@@ -40,7 +40,7 @@ const Logout = ({ logout }) => {
   ]
 
   return (
-    <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+    <Box sx={{ flexGrow: 1, display: { xs: "flex" } }}>
       <IconButton size='large' onClick={handleOpenMenu} color='inherit'>
         <PersonOutlineOutlinedIcon />
       </IconButton>
@@ -58,7 +58,7 @@ const Logout = ({ logout }) => {
         open={Boolean(anchorElNav)}
         onClose={handleCloseMenu}
         sx={{
-          display: { xs: "block", md: "none" },
+          display: { xs: "block" },
         }}
       >
         {menuItems.map((item) => (
