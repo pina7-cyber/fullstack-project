@@ -99,6 +99,7 @@ const LoginForm = (props) => {
             password: values.password,
             name: values.name,
           }
+      console.log(signupData)
       CreateUser({ variables: signupData })
       setValues({
         username: "",

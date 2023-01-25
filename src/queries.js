@@ -40,8 +40,8 @@ export const CREATE_TOPIC = gql`
   }
 `
 export const CREATE_USER = gql`
-  mutation CreateUser($username: String!, $password: String!) {
-    createUser(username: $username, password: $password) {
+  mutation CreateUser($username: String!, $password: String!, $name: String) {
+    createUser(username: $username, password: $password, name: $name) {
       name
       username
       id
