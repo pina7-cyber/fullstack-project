@@ -63,26 +63,20 @@ export const useNotification = () => {
 }
 
 export const useAuth = () => {
-  const [token, setTok] = useState(null)
   const [loginTimeout, setLoginTimeout] = useState(null)
 
-  useEffect(() => {
-    const localToken = window.localStorage.getItem("topixx-user-token")
-    if (localToken) {
-      setToken(localToken)
-    }
-  }, [])
+  console.log(loginTimeout)
 
   const setToken = (token) => {
-    setTok(token)
     localStorage.setItem("topixx-user-token", token)
     setLoginTimeout(setTimeout(clearToken, 5000))
   }
 
   const clearToken = () => {
-    setTok(null)
     localStorage.clear()
   }
+
+  const token = () => window.localStorage.getItem("topixx-user-token")
 
   const resetLoginTimeout = () => {
     clearTimeout(loginTimeout)

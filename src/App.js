@@ -12,6 +12,7 @@ import { ALL_USERS } from "./queries"
 import { useNotification } from "./hooks"
 import { useTheme } from "@mui/material/styles"
 import { useColorMode } from "./theme"
+import { useAuth } from "./hooks"
 
 const App = () => {
   const theme = useTheme()
@@ -19,8 +20,9 @@ const App = () => {
   const topics = useQuery(ALL_TOPICS)
   const users = useQuery(ALL_USERS)
   const notification = useNotification()
+  const auth = useAuth()
 
-  console.log("reload")
+  console.log(auth.token())
 
   if (topics.loading) {
     return <div>loading...</div>

@@ -15,7 +15,6 @@ const Topic = ({ topics }) => {
   const match = useMatch("/topics/:id")
 
   const topic = topics.find((t) => t.id === match.params.id)
-  console.log(topic)
 
   const comments = topic.comments
   const [visible, setVisible] = useState(false)

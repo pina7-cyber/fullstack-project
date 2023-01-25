@@ -8,7 +8,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 })
 
 export default function Notification({ message, removeNotification }) {
-  console.log("noti", message.available)
   if (!message.available) {
     return null
   }
