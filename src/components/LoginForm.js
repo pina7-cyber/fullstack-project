@@ -45,7 +45,7 @@ const LoginForm = (props) => {
     }
     if (userResult.data) {
       props.setNotification(
-        `Welcome ${userResult.data.createUser.username}! An Account has been created. Log in! `,
+        `Welcome ${userResult.data.createUser.username}! Your Account is successfully created! `,
         "success"
       )
       Login({
@@ -91,7 +91,7 @@ const LoginForm = (props) => {
         password: values.password,
       }
       Login({ variables: loginData })
-      
+
       isFilled.fill("username", "")
       isFilled.fill("password", "")
     } else if (isLogin === false) {
