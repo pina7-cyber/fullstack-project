@@ -13,4 +13,5 @@
 | 23.01 | 9:00pm-10:30pm    |1.5   | frontend: Adding Notification.js with useNotification-hook. Not working yet: hook-state is not automatically updated in Notification.js --> notifications not visible.   |
 | 24.01 | 4:20pm-7:00pm    |2.5   | frontend: notifications fixed. frontend and backend: Adding Registration functionality and error message handling. to be continued.   |
 | 25.01 | 0:30am-1:30am    |1   | frontend and backend: Adjusting Registration functionality and error message handling.|
+| 25.01 | 4:30pm-8:30pm    |4   | frontend and backend: Fixing Bug regarding Reg. functionality. frontend: Automatic Login after Registration. Account Button on Navbar with onClick-Menu after Login (so far only contains Logout-MenuItem) |
 | total   |    | | | 
