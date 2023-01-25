@@ -36,6 +36,12 @@ const LoginForm = (props) => {
       props.setToken(token)
       localStorage.setItem("topixx-user-token", token)
       client.resetStore()
+      setValues({
+        username: "",
+        password: "",
+        name: "",
+        showPassword: false,
+      })
     }
     if (userResult.data) {
       props.setNotification(
@@ -47,12 +53,6 @@ const LoginForm = (props) => {
           username: values.username,
           password: values.password,
         },
-      })
-      setValues({
-        username: "",
-        password: "",
-        name: "",
-        showPassword: false,
       })
     }
   }, [loginResult.data, userResult.data]) // eslint-disable-line
@@ -91,11 +91,7 @@ const LoginForm = (props) => {
         password: values.password,
       }
       Login({ variables: loginData })
-      setValues({
-        username: "",
-        password: "",
-        showPassword: false,
-      })
+      
       isFilled.fill("username", "")
       isFilled.fill("password", "")
     } else if (isLogin === false) {
