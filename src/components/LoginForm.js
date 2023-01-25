@@ -42,6 +42,12 @@ const LoginForm = (props) => {
         `Welcome ${userResult.data.createUser.username}! An Account has been created. Log in! `,
         "success"
       )
+      Login({
+        variables: {
+          username: userResult.data.createUser.username,
+          password: userResult.data.createUser.password,
+        },
+      })
     }
   }, [loginResult.data, userResult.data]) // eslint-disable-line
 
@@ -87,8 +93,6 @@ const LoginForm = (props) => {
       isFilled.fill("username", "")
       isFilled.fill("password", "")
     } else if (isLogin === false) {
-      console.log("signup")
-      console.log(values.name)
       const signupData = !values.name.replace(/\s/g, "").length //string only contains whitespace (ie. empty, spaces, tabs or line breaks)
         ? {
             username: values.username,
@@ -99,7 +103,6 @@ const LoginForm = (props) => {
             password: values.password,
             name: values.name,
           }
-      console.log(signupData)
       CreateUser({ variables: signupData })
       setValues({
         username: "",
@@ -107,6 +110,7 @@ const LoginForm = (props) => {
         name: "",
         showPassword: false,
       })
+
       isFilled.fill("username", "")
       isFilled.fill("password", "")
     }
