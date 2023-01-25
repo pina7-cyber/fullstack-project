@@ -11,25 +11,24 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 const Logout = ({ logout }) => {
   const [anchorElNav, setAnchorElNav] = useState(null)
 
-  const handleOpenNavMenu = (event) => {
+  const handleOpenMenu = (event) => {
     setAnchorElNav(event.currentTarget)
   }
 
-  const handleCloseNavMenu = () => {
+  const handleCloseMenu = () => {
     setAnchorElNav(null)
   }
 
   const menuItems = [
-    { Name: "Logout", Icon: <LogoutOutlinedIcon />, onClick: { logout } },
+    { Name: "Logout", Icon: <LogoutOutlinedIcon />, onClick: logout },
   ]
 
   return (
     <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-      <IconButton size='large' onClick={handleOpenNavMenu} color='inherit'>
+      <IconButton size='large' onClick={handleOpenMenu} color='inherit'>
         <PersonOutlineOutlinedIcon />
       </IconButton>
       <Menu
-        id='menu-appbar'
         anchorEl={anchorElNav}
         anchorOrigin={{
           vertical: "bottom",
@@ -41,14 +40,14 @@ const Logout = ({ logout }) => {
           horizontal: "left",
         }}
         open={Boolean(anchorElNav)}
-        onClose={handleCloseNavMenu}
+        onClose={handleCloseMenu}
         sx={{
           display: { xs: "block", md: "none" },
         }}
       >
         {menuItems.map((item) => (
-          <MenuItem key={item.Name} onClick={handleCloseNavMenu}>
-            <ListItemIcon onClick={item.onClick}>{item.Icon}</ListItemIcon>
+          <MenuItem key={item.Name} onClick={item.onClick}>
+            <ListItemIcon>{item.Icon}</ListItemIcon>
             <ListItemText>{item.Name}</ListItemText>
           </MenuItem>
         ))}

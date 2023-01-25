@@ -20,6 +20,7 @@ const Login = ({ setNotification }) => {
   }, [])
 
   const handleLogout = (event) => {
+    console.log("logout")
     setToken(null)
     localStorage.clear()
     client.resetStore()
