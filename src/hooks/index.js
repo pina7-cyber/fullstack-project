@@ -65,7 +65,6 @@ export const useNotification = () => {
 }
 
 export const useAuth = () => {
-  const [token, setTok] = useState(null)
   const [timeoutID, setTimeoutID] = useState(null)
 
   const user = useQuery(USER)
@@ -76,31 +75,16 @@ export const useAuth = () => {
     username: null,
   })
 
-  const username = user.data
-    ? user.data.me
-      ? user.data.me.name
-        ? user.data.me.name
-        : null
-      : null
-    : null
-
   useEffect(() => {
     const localToken = window.localStorage.getItem("topixx-user-token")
-    if (localToken) {
-      setTok(localToken)
-    }
-    if (!user.loading) {
+    if (localToken && !user.loading) {
       setValues({
-        username: "",
-        password: "",
-        name: "",
-        showPassword: false,
+        token: localToken,
+        name: user.data.me.name,
+        username: user.data.me.username,
       })
     }
-  }, [token, user])
-
-  console.log(timeoutID)
-  console.log(token)
+  }, [values, user])
 
   const setToken = (token) => {
     localStorage.setItem("topixx-user-token", token)
@@ -109,14 +93,32 @@ export const useAuth = () => {
   }
 
   const clearToken = () => {
-    //localStorage.clear()
-    setTok(null)
+    localStorage.clear()
+    setValues({
+      ...values,
+      token: null,
+    })
   }
 
-  const getToken = () => window.localStorage.getItem("topixx-user-token")
+  const getUser = (value) => {
+    const localToken = window.localStorage.getItem("topixx-user-token")
+    setValues({
+      ...values,
+      token: localToken,
+    })
+    if (value === "token") {
+      return localToken
+    }
+    if (value === "username") {
+      return values.username
+    }
+    if (value === "name") {
+      return values.name
+    }
+  }
 
   const resetLoginTimeout = () => {
-    if (timeoutID && getToken()) {
+    if (timeoutID && getUser("token")) {
       clearTimeout(timeoutID)
       const newTimeoutID = setTimeout(clearToken, 5000)
       setTimeoutID(newTimeoutID)
@@ -126,8 +128,7 @@ export const useAuth = () => {
   return {
     setToken,
     clearToken,
-    token,
     resetLoginTimeout,
-    getToken,
+    getUser,
   }
 }
