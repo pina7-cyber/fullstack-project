@@ -17,5 +17,5 @@
 | 25.01 | 4:30pm-8:30pm    |4   | frontend and backend: Fixing Bug regarding Reg. functionality. frontend: Automatic Login after Registration. Account Button on Navbar with onClick-Menu after Login (so far only contains Logout-MenuItem)
 | 25.01 | 10:00pm-1:00am    |3   | frontend: Apollo client setup with context/header, trying to code a token-hook with timeout and resettimeout whenever user is active. To be continued. |
 | 26.01 | 4:20pm-5:20pm    |1  | frontend: token-hook. still not working. To be continued. |
-| 26.01 | 6:00pm-8:30pm    |2.5  | frontend: token-hook is fixed. Searching for how to implement background-pic. |
+| 26.01 | 6:00pm-9:00pm    |3  | frontend: token-hook is fixed. Restructuring. Searching for how to implement background-pic. |
 | total   |    | | | 
