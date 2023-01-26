@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { USER } from "../queries"
 import { useQuery } from "@apollo/client"
+import { useApolloClient } from "@apollo/client"
 
 export const useIsFilled = (props) => {
   const [values, setValues] = useState(props)
@@ -76,10 +77,10 @@ export const useAuth = () => {
     variables: { search: values.token ? values.token.search : null },
   })
 
+  const client = useApolloClient()
+
   useEffect(() => {
-    console.log("effect")
     if (values.token && user.data) {
-      console.log(user.data)
       setValues({
         token: values.token,
         name: user.data.me.name ? user.data.me.name : null,
@@ -97,6 +98,7 @@ export const useAuth = () => {
     const timeoutID = setTimeout(clearToken, 20000)
     setTimeoutID(timeoutID)
     console.log("setToken timeoutID", timeoutID)
+    client.resetStore()
   }
 
   const clearToken = () => {
@@ -107,23 +109,20 @@ export const useAuth = () => {
       token: null,
     })
     clearTimeout(timeoutID)
+    client.resetStore()
   }
 
   const getUser = (value) => {
     if (!value) {
-      console.log("getuser")
       return values
     }
     if (value === "token" && !user.loading) {
-      console.log("getuser-token")
       return values.token
     }
     if (value === "username") {
-      console.log("getuser-username")
       return values.username
     }
     if (value === "name") {
-      console.log("getuser-name")
       return values.name
     }
   }

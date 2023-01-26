@@ -2,7 +2,6 @@ import { useState, useEffect } from "react"
 import { useMutation } from "@apollo/client"
 import { LOGIN } from "../queries"
 import { CREATE_USER } from "../queries"
-import { useApolloClient } from "@apollo/client"
 import IconButton from "@mui/material/IconButton"
 import Input from "@mui/material/Input"
 import InputLabel from "@mui/material/InputLabel"
@@ -16,8 +15,6 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
 import { useIsFilled } from "../hooks/index"
 
 const LoginForm = (props) => {
-  const client = useApolloClient()
-
   const [Login, loginResult] = useMutation(LOGIN, {
     onError: (error) => {
       props.setNotification(error.graphQLErrors[0].message, "error")
@@ -34,8 +31,7 @@ const LoginForm = (props) => {
     if (loginResult.data) {
       const token = loginResult.data.login.value
       props.setToken(token)
-      localStorage.setItem("topixx-user-token", token)
-      client.resetStore()
+
       setValues({
         username: "",
         password: "",

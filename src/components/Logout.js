@@ -8,12 +8,15 @@ import ListItemIcon from "@mui/material/ListItemIcon"
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined"
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined"
 import Divider from "@mui/material/Divider"
-import { USER } from "../queries"
-import { useQuery } from "@apollo/client"
 
-const Logout = ({ logout }) => {
+const Logout = ({ setNotification, clearToken, getUser }) => {
   const [anchorElNav, setAnchorElNav] = useState(null)
-  const user = useQuery(USER)
+
+  const handleLogout = (event) => {
+    console.log("logout")
+    clearToken()
+    setNotification("successfully logged out", "success")
+  }
 
   const handleOpenMenu = (event) => {
     setAnchorElNav(event.currentTarget)
@@ -23,12 +26,10 @@ const Logout = ({ logout }) => {
     setAnchorElNav(null)
   }
 
-  const name = user.data
-    ? user.data.me
-      ? user.data.me.name
-        ? user.data.me.name
-        : user.data.me.username
-      : null
+  const name = getUser("username")
+    ? getUser("name")
+      ? getUser("name")
+      : getUser("username")
     : null
 
   const menuItems = [
@@ -68,7 +69,7 @@ const Logout = ({ logout }) => {
           </MenuItem>
         ))}
         <Divider />
-        <MenuItem onClick={logout}>
+        <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <LogoutOutlinedIcon />
           </ListItemIcon>

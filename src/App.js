@@ -21,7 +21,6 @@ const App = () => {
   const users = useQuery(ALL_USERS)
   const notification = useNotification()
   const auth = useAuth()
-  console.log(auth.getUser())
   const setToken = auth.setToken
   const clearToken = auth.clearToken
   const getUser = auth.getUser
