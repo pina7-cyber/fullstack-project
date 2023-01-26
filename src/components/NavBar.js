@@ -15,7 +15,7 @@ import Login from "./Login"
 import Brightness4Icon from "@mui/icons-material/Brightness4"
 import Brightness7Icon from "@mui/icons-material/Brightness7"
 
-function NavBar({ setNotification, theme, colorMode }) {
+function NavBar({ setNotification, theme, colorMode, setToken, getUser, clearToken }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null)
 
   const handleOpenNavMenu = (event) => {
@@ -142,7 +142,12 @@ function NavBar({ setNotification, theme, colorMode }) {
             </IconButton>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <Login setNotification={setNotification} />
+            <Login
+              setNotification={setNotification}
+              setToken={setToken}
+              getUser={getUser}
+              clearToken={clearToken}
+            />
           </Box>
         </Toolbar>
       </Container>

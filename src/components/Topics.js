@@ -14,7 +14,6 @@ import {
 
 const Topics = ({ topics }) => {
   const navigate = useNavigate()
-  console.log(topics)
 
   return (
     <div>

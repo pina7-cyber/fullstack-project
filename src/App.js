@@ -12,7 +12,7 @@ import { ALL_USERS } from "./queries"
 import { useNotification } from "./hooks"
 import { useTheme } from "@mui/material/styles"
 import { useColorMode } from "./theme"
-//import { useAuth } from "./hooks/index"
+import { useAuth } from "./hooks/index"
 
 const App = () => {
   const theme = useTheme()
@@ -20,6 +20,11 @@ const App = () => {
   const topics = useQuery(ALL_TOPICS)
   const users = useQuery(ALL_USERS)
   const notification = useNotification()
+  const auth = useAuth()
+  console.log(auth.getUser())
+  const setToken = auth.setToken
+  const clearToken = auth.clearToken
+  const getUser = auth.getUser
 
   if (topics.loading) {
     return <div>loading...</div>
@@ -35,6 +40,9 @@ const App = () => {
         setNotification={notification.setNotification}
         theme={theme}
         colorMode={colorMode}
+        setToken={setToken}
+        clearToken={clearToken}
+        getUser={getUser}
       />
       <Notification
         message={notification.message}

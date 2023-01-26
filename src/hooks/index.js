@@ -67,41 +67,53 @@ export const useNotification = () => {
 export const useAuth = () => {
   const [timeoutID, setTimeoutID] = useState(null)
 
-  const user = useQuery(USER)
-
   const [values, setValues] = useState({
     token: null,
     name: null,
     username: null,
   })
+  const user = useQuery(USER, {
+    variables: { search: values.token ? values.token.search : null },
+  })
 
   useEffect(() => {
-    const localToken = window.localStorage.getItem("topixx-user-token")
     console.log("effect")
-    if (localToken && !user.loading) {
+    if (values.token && user.data) {
+      console.log(user.data)
       setValues({
-        token: localToken,
-        name: user.data.me.name,
+        token: values.token,
+        name: user.data.me.name ? user.data.me.name : null,
         username: user.data.me.username,
       })
     }
-  }, [values, user])
+  }, [values.token, user.data])
 
   const setToken = (token) => {
     localStorage.setItem("topixx-user-token", token)
-    const timeoutID = setTimeout(clearToken, 5000)
+    setValues({
+      ...values,
+      token: token,
+    })
+    const timeoutID = setTimeout(clearToken, 20000)
     setTimeoutID(timeoutID)
+    console.log("setToken timeoutID", timeoutID)
   }
 
   const clearToken = () => {
     localStorage.clear()
     setValues({
-      ...values,
+      name: null,
+      username: null,
       token: null,
     })
+    clearTimeout(timeoutID)
   }
 
   const getUser = (value) => {
+    if (!value) {
+      console.log("getuser")
+      return values
+    }
     if (value === "token" && !user.loading) {
       console.log("getuser-token")
       return values.token
@@ -111,6 +123,7 @@ export const useAuth = () => {
       return values.username
     }
     if (value === "name") {
+      console.log("getuser-name")
       return values.name
     }
   }
