@@ -1,4 +1,6 @@
 # time recording
+kable(rbind(cbind(' '=' ', df),
+            cbind(' '='Total', sumrow)))
 
 | date  | time  | hours | activity  |
 | :----:|:-----| :-----|:-----|
@@ -16,4 +18,3 @@
 | 25.01 | 4:30pm-8:30pm    |4   | frontend and backend: Fixing Bug regarding Reg. functionality. frontend: Automatic Login after Registration. Account Button on Navbar with onClick-Menu after Login (so far only contains Logout-MenuItem)
 | 25.01 | 10:00pm-1:00am    |3   | frontend: Apollo client setup with context/header, trying to code a token-hook with timeout and resettimeout whenever user is active. To be continued. |
 | total   |    | | | 
-<!-- TBLFM: @>$3=sum(@I..@-1) -->
