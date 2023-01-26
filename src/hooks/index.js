@@ -71,7 +71,7 @@ export const useAuth = () => {
     if (localToken) {
       setTok(localToken)
     }
-  }, [token, timeoutID])
+  }, [token])
 
   console.log(timeoutID)
   console.log(token)
