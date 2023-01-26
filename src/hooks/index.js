@@ -71,7 +71,7 @@ export const useAuth = () => {
     if (localToken) {
       setTok(localToken)
     }
-  }, [token])
+  }, [token, timeoutID])
 
   console.log(timeoutID)
   console.log(token)
@@ -83,15 +83,18 @@ export const useAuth = () => {
   }
 
   const clearToken = () => {
-    localStorage.clear()
+    //localStorage.clear()
     setTok(null)
   }
 
-  const token = () => window.localStorage.getItem("topixx-user-token")
+  const getToken = () => window.localStorage.getItem("topixx-user-token")
 
   const resetLoginTimeout = () => {
-    clearTimeout(loginTimeout)
-    setLoginTimeout(setTimeout(clearToken, 5000))
+    if (timeoutID && getToken()) {
+      clearTimeout(timeoutID)
+      const newTimeoutID = setTimeout(clearToken, 5000)
+      setTimeoutID(newTimeoutID)
+    }
   }
 
   return {
@@ -99,5 +102,6 @@ export const useAuth = () => {
     clearToken,
     token,
     resetLoginTimeout,
+    getToken,
   }
 }
