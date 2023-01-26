@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react"
+import { USER } from "../queries"
+import { useQuery } from "@apollo/client"
 
 export const useIsFilled = (props) => {
   const [values, setValues] = useState(props)
@@ -66,12 +68,36 @@ export const useAuth = () => {
   const [token, setTok] = useState(null)
   const [timeoutID, setTimeoutID] = useState(null)
 
+  const user = useQuery(USER)
+
+  const [values, setValues] = useState({
+    token: null,
+    name: null,
+    username: null,
+  })
+
+  const username = user.data
+    ? user.data.me
+      ? user.data.me.name
+        ? user.data.me.name
+        : null
+      : null
+    : null
+
   useEffect(() => {
     const localToken = window.localStorage.getItem("topixx-user-token")
     if (localToken) {
       setTok(localToken)
     }
-  }, [token])
+    if (!user.loading) {
+      setValues({
+        username: "",
+        password: "",
+        name: "",
+        showPassword: false,
+      })
+    }
+  }, [token, user])
 
   console.log(timeoutID)
   console.log(token)
