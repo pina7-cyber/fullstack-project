@@ -77,6 +77,7 @@ export const useAuth = () => {
 
   useEffect(() => {
     const localToken = window.localStorage.getItem("topixx-user-token")
+    console.log("effect")
     if (localToken && !user.loading) {
       setValues({
         token: localToken,
@@ -101,15 +102,12 @@ export const useAuth = () => {
   }
 
   const getUser = (value) => {
-    const localToken = window.localStorage.getItem("topixx-user-token")
-    setValues({
-      ...values,
-      token: localToken,
-    })
-    if (value === "token") {
-      return localToken
+    if (value === "token" && !user.loading) {
+      console.log("getuser-token")
+      return values.token
     }
     if (value === "username") {
+      console.log("getuser-username")
       return values.username
     }
     if (value === "name") {
