@@ -9,7 +9,12 @@ import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined"
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined"
 import Divider from "@mui/material/Divider"
 
-const Logout = ({ setNotification, clearToken, getUser }) => {
+const Logout = ({
+  setNotification,
+  clearToken,
+  getUser,
+  resetLoginTimeout,
+}) => {
   const [anchorElNav, setAnchorElNav] = useState(null)
 
   const handleLogout = (event) => {
@@ -20,10 +25,12 @@ const Logout = ({ setNotification, clearToken, getUser }) => {
 
   const handleOpenMenu = (event) => {
     setAnchorElNav(event.currentTarget)
+    resetLoginTimeout()
   }
 
   const handleCloseMenu = () => {
     setAnchorElNav(null)
+    resetLoginTimeout()
   }
 
   const name = getUser("username")
@@ -36,7 +43,7 @@ const Logout = ({ setNotification, clearToken, getUser }) => {
     {
       Name: name ? name : "My Account",
       Icon: <PersonOutlineOutlinedIcon />,
-      onClick: null,
+      onClick: () => resetLoginTimeout(),
     },
   ]
 

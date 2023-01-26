@@ -24,6 +24,7 @@ const App = () => {
   const setToken = auth.setToken
   const clearToken = auth.clearToken
   const getUser = auth.getUser
+  const resetLoginTimeout = auth.resetLoginTimeout
 
   if (topics.loading) {
     return <div>loading...</div>
@@ -42,6 +43,7 @@ const App = () => {
         setToken={setToken}
         clearToken={clearToken}
         getUser={getUser}
+        resetLoginTimeout={resetLoginTimeout}
       />
       <Notification
         message={notification.message}
@@ -55,7 +57,12 @@ const App = () => {
         />
         <Route
           path='/topics/:id'
-          element={<Topic topics={topics.data.allTopics} />}
+          element={
+            <Topic
+              topics={topics.data.allTopics}
+              resetLoginTimeout={resetLoginTimeout}
+            />
+          }
         />
         <Route path='/' element={<Home />} />
       </Routes>

@@ -11,7 +11,7 @@ import { useState } from "react"
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined"
 
 import { useMatch } from "react-router-dom"
-const Topic = ({ topics }) => {
+const Topic = ({ topics, resetLoginTimeout }) => {
   const match = useMatch("/topics/:id")
 
   const topic = topics.find((t) => t.id === match.params.id)
@@ -20,14 +20,17 @@ const Topic = ({ topics }) => {
   const [visible, setVisible] = useState(false)
   const toggleVisibility = () => {
     setVisible(!visible)
+    resetLoginTimeout()
   }
 
   const likeBlog = () => {
     console.log("like")
+    resetLoginTimeout()
   }
 
   const remove = () => {
     console.log("remove")
+    resetLoginTimeout()
   }
 
   const showWhenOwner = {
@@ -54,9 +57,7 @@ const Topic = ({ topics }) => {
           textAlign: "center",
         }}
       >
-        <Typography variant={"h5"}>
-          {topic.content}
-        </Typography>
+        <Typography variant={"h5"}>{topic.content}</Typography>
 
         <Stack
           mb={4}
@@ -78,7 +79,10 @@ const Topic = ({ topics }) => {
           <Box
             component={Typography}
             sx={{ cursor: "pointer", flexGrow: 1 }}
-            onClick={() => console.log("navigate to category")}
+            onClick={() => {
+              console.log("navigate to category")
+              resetLoginTimeout()
+            }}
           >
             {topic.categories[0]}
           </Box>
@@ -113,7 +117,9 @@ const Topic = ({ topics }) => {
           style={{
             display: visible ? "" : "none",
           }}
-        >{comments.join(",")}</div>
+        >
+          {comments.join(",")}
+        </div>
       </Box>
     </div>
   )

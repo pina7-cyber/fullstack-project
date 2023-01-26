@@ -81,11 +81,13 @@ export const useAuth = () => {
 
   useEffect(() => {
     if (values.token && user.data) {
-      setValues({
-        token: values.token,
-        name: user.data.me.name ? user.data.me.name : null,
-        username: user.data.me.username,
-      })
+      if (user.data.me) {
+        setValues({
+          token: values.token,
+          name: user.data.me.name ? user.data.me.name : null,
+          username: user.data.me.username,
+        })
+      }
     }
   }, [values.token, user.data])
 
@@ -102,9 +104,8 @@ export const useAuth = () => {
       ...values,
       token: token,
     })
-    const timeoutID = setTimeout(clearToken, 20000)
+    const timeoutID = setTimeout(clearToken, 5000)
     setTimeoutID(timeoutID)
-    console.log("setToken timeoutID", timeoutID)
     client.resetStore()
   }
 
@@ -116,6 +117,7 @@ export const useAuth = () => {
       token: null,
     })
     clearTimeout(timeoutID)
+    setTimeoutID(null)
     client.resetStore()
   }
 
@@ -135,12 +137,15 @@ export const useAuth = () => {
   }
 
   const resetLoginTimeout = () => {
+    console.log("timeoutID old", timeoutID)
     if (timeoutID && getUser("token")) {
       clearTimeout(timeoutID)
       const newTimeoutID = setTimeout(clearToken, 5000)
       setTimeoutID(newTimeoutID)
     }
   }
+
+  console.log("timeoutID new", timeoutID)
 
   return {
     setToken,

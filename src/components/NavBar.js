@@ -15,15 +15,25 @@ import Login from "./Login"
 import Brightness4Icon from "@mui/icons-material/Brightness4"
 import Brightness7Icon from "@mui/icons-material/Brightness7"
 
-function NavBar({ setNotification, theme, colorMode, setToken, getUser, clearToken }) {
+function NavBar({
+  resetLoginTimeout,
+  setNotification,
+  theme,
+  colorMode,
+  setToken,
+  getUser,
+  clearToken,
+}) {
   const [anchorElNav, setAnchorElNav] = React.useState(null)
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget)
+    resetLoginTimeout()
   }
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null)
+    resetLoginTimeout()
   }
 
   const pages = [
@@ -133,7 +143,13 @@ function NavBar({ setNotification, theme, colorMode, setToken, getUser, clearTok
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton onClick={colorMode.toggleColorMode} color='inherit'>
+            <IconButton
+              onClick={() => {
+                colorMode.toggleColorMode()
+                resetLoginTimeout()
+              }}
+              color='inherit'
+            >
               {theme.palette.mode === "dark" ? (
                 <Brightness7Icon />
               ) : (
@@ -147,6 +163,7 @@ function NavBar({ setNotification, theme, colorMode, setToken, getUser, clearTok
               setToken={setToken}
               getUser={getUser}
               clearToken={clearToken}
+              resetLoginTimeout={resetLoginTimeout}
             />
           </Box>
         </Toolbar>

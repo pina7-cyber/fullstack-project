@@ -5,7 +5,13 @@ import { useState } from "react"
 import LoginForm from "./LoginForm"
 import Logout from "./Logout"
 
-const Login = ({ setNotification, setToken, getUser, clearToken }) => {
+const Login = ({
+  setNotification,
+  setToken,
+  getUser,
+  clearToken,
+  resetLoginTimeout,
+}) => {
   const [open, setOpen] = useState(false)
 
   const handleClose = () => setOpen(false)
@@ -17,6 +23,7 @@ const Login = ({ setNotification, setToken, getUser, clearToken }) => {
         getUser={getUser}
         setNotification={setNotification}
         clearToken={clearToken}
+        resetLoginTimeout={resetLoginTimeout}
       />
     )
   }
