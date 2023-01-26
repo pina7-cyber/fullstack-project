@@ -1,6 +1,5 @@
 # time recording
-kable(rbind(cbind(' '=' ', df),
-            cbind(' '='Total', sumrow)))
+
 
 | date  | time  | hours | activity  |
 | :----:|:-----| :-----|:-----|
