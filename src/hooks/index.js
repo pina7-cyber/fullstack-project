@@ -89,6 +89,13 @@ export const useAuth = () => {
     }
   }, [values.token, user.data])
 
+  useEffect(() => {
+    const localToken = localStorage.getItem("topixx-user-token")
+    if (localToken) {
+      setToken(localToken)
+    }
+  }, []) // eslint-disable-line
+
   const setToken = (token) => {
     localStorage.setItem("topixx-user-token", token)
     setValues({
