@@ -16,59 +16,59 @@ const Topics = ({ topics, resetLoginTimeout }) => {
   const navigate = useNavigate()
 
   return (
-    <div>
+    // <Grid
+    //   item
+    //   container
+    //   direction='column'
+    //   justifyContent='space-between'
+    //   alignItems='center'
+    //   spacing={4}
+    //   wrap='nowrap'
+    // >
       <Grid
+        item
         container
-        direction='column'
-        justifyContent='space-between'
-        alignItems='center'
-        spacing={4}
-        wrap='nowrap'
+        sx={{
+          minWidth: { xs: "90%", sm: "540px" },
+          maxWidth: { xs: "95%", sm: "95%" },
+        }}
       >
-        <Grid
-          item
-          sx={{
-            minWidth: { xs: "90%", sm: "540px" },
-            maxWidth: { xs: "95%", sm: "95%" },
-          }}
-        >
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead>
-                <TableRow>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>
+                  <Typography variant='button'>Content</Typography>
+                </TableCell>
+                <TableCell align='right'>
+                  <Typography variant='button'>ID</Typography>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {topics.map((topic) => (
+                <TableRow
+                  hover
+                  key={topic.id}
+                  onClick={() => {
+                    navigate(`/topics/${topic.id}`)
+                    resetLoginTimeout()
+                  }}
+                  sx={{ cursor: "pointer" }}
+                >
                   <TableCell>
-                    <Typography variant='button'>Content</Typography>
+                    <Typography>{topic.content}</Typography>
                   </TableCell>
                   <TableCell align='right'>
-                    <Typography variant='button'>ID</Typography>
+                    <Typography>{topic.id}</Typography>
                   </TableCell>
                 </TableRow>
-              </TableHead>
-              <TableBody>
-                {topics.map((topic) => (
-                  <TableRow
-                    hover
-                    key={topic.id}
-                    onClick={() => {
-                      navigate(`/topics/${topic.id}`)
-                      resetLoginTimeout()
-                    }}
-                    sx={{ cursor: "pointer" }}
-                  >
-                    <TableCell>
-                      <Typography>{topic.content}</Typography>
-                    </TableCell>
-                    <TableCell align='right'>
-                      <Typography>{topic.id}</Typography>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Grid>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Grid>
-    </div>
+    // </Grid>
   )
 }
 
