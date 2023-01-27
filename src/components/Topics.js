@@ -12,7 +12,7 @@ import {
   TableHead,
 } from "@mui/material"
 
-const Topics = ({ topics }) => {
+const Topics = ({ topics, resetLoginTimeout }) => {
   const navigate = useNavigate()
 
   return (
@@ -49,7 +49,10 @@ const Topics = ({ topics }) => {
                   <TableRow
                     hover
                     key={topic.id}
-                    onClick={() => navigate(`/topics/${topic.id}`)}
+                    onClick={() => {
+                      navigate(`/topics/${topic.id}`)
+                      resetLoginTimeout()
+                    }}
                     sx={{ cursor: "pointer" }}
                   >
                     <TableCell>

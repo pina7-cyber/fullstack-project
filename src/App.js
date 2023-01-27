@@ -53,7 +53,12 @@ const App = () => {
       <Routes>
         <Route
           path='/topics'
-          element={<Topics topics={topics.data.allTopics} />}
+          element={
+            <Topics
+              topics={topics.data.allTopics}
+              resetLoginTimeout={resetLoginTimeout}
+            />
+          }
         />
         <Route
           path='/topics/:id'
