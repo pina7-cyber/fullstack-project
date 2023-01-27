@@ -18,4 +18,5 @@
 | 25.01 | 10:00pm-1:00am    |3   | frontend: Apollo client setup with context/header, trying to code a token-hook with timeout and resettimeout whenever user is active. To be continued. |
 | 26.01 | 4:20pm-5:20pm    |1  | frontend: token-hook. still not working. To be continued. |
 | 26.01 | 6:00pm-9:00pm    |3  | frontend: token-hook is fixed. Restructuring. Searching for how to implement background-pic. |
+| 26.01 | 11:30pm-0:30am    |1  | frontend: token-hook revised. Implementing and testing resetTimeoutID. |
 | total   |    | | | 
