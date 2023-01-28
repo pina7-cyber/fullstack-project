@@ -38,27 +38,33 @@ const App = () => {
   return (
     <>
       <CssBaseline />
+      <NavBar
+        setNotification={notification.setNotification}
+        theme={theme}
+        colorMode={colorMode}
+        setToken={setToken}
+        clearToken={clearToken}
+        getUser={getUser}
+        resetLoginTimeout={resetLoginTimeout}
+      />
       <Grid
         container
-        direction='column'
-        justifyContent='space-between'
+        direction='row'
+        justifyContent='center'
         alignItems='stretch'
         style={{ height: "100vh", width: "100vw" }}
       >
-        <NavBar
-          setNotification={notification.setNotification}
-          theme={theme}
-          colorMode={colorMode}
-          setToken={setToken}
-          clearToken={clearToken}
-          getUser={getUser}
-          resetLoginTimeout={resetLoginTimeout}
-        />
         <Notification
           message={notification.message}
           removeNotification={notification.removeNotification}
         />
-
+        {/* <Grid
+        container
+        direction='column'
+        justifyContent='center'
+        alignItems='stretch'
+        style={{ height: "100vh", width: "100vw" }}
+      > */}
         <Routes>
           <Route
             path='/topics'
@@ -80,9 +86,9 @@ const App = () => {
           />
           <Route path='/' element={<Home />} />
         </Routes>
-
-        <Footer />
       </Grid>
+
+      <Footer />
     </>
   )
 }
