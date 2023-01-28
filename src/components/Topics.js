@@ -16,18 +16,9 @@ const Topics = ({ topics, resetLoginTimeout }) => {
   const navigate = useNavigate()
 
   return (
-    // <Grid
-    //   item
-    //   container
-    //   direction='column'
-    //   justifyContent='space-between'
-    //   alignItems='center'
-    //   spacing={4}
-    //   wrap='nowrap'
-    // >
+    <Grid item container alignItems='center' justify='center'>
       <Grid
         item
-        container
         sx={{
           minWidth: { xs: "90%", sm: "540px" },
           maxWidth: { xs: "95%", sm: "95%" },
@@ -68,7 +59,7 @@ const Topics = ({ topics, resetLoginTimeout }) => {
           </Table>
         </TableContainer>
       </Grid>
-    // </Grid>
+    </Grid>
   )
 }
 

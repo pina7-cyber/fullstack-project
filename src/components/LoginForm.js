@@ -13,6 +13,8 @@ import { Grid, Paper, Typography, Button } from "@mui/material"
 import LoginIcon from "@mui/icons-material/Login"
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
 import { useIsFilled } from "../hooks/index"
+import Avatar from "@mui/material/Avatar"
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
 
 const LoginForm = (props) => {
   const [Login, loginResult] = useMutation(LOGIN, {
@@ -149,7 +151,13 @@ const LoginForm = (props) => {
             onSubmit={handleSubmit}
             justifyContent='space-evenly'
             alignItems='center'
+           
           >
+            <Grid item>
+              <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+                {isLogin ? <LoginIcon /> : <LockOutlinedIcon />}
+              </Avatar>
+            </Grid>
             <Grid item>
               <Typography variant='h5'>
                 {isLogin ? `Login` : "Signup"}
