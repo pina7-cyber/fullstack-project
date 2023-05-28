@@ -5,6 +5,7 @@ import { useApolloClient } from "@apollo/client"
 
 export const useIsFilled = (props) => {
   const [values, setValues] = useState(props)
+  console.log(values.name, "values")
 
   const fill = (prop, value) => {
     setValues({ ...values, [prop]: value })
@@ -12,9 +13,17 @@ export const useIsFilled = (props) => {
   const full = () => {
     let counter = 0
 
-    Object.entries(values).map((value) => (value[1] === "" ? null : counter++))
+    Object.entries(values).map((value) =>
+      value[1] === values.name //name is not required for sign up!
+        ? null
+        : !value[1].replace(/\s/g, "") //string does not count if it only contains whitespace (ie. empty, spaces, tabs or line breaks)
+        ? null
+        : counter++
+    )
+    console.log(Object.entries(values))
+    console.log(Object.entries(values))
 
-    if (counter === Object.entries(values).length) {
+    if (counter >= 2) {
       return true
     } else {
       return false
