@@ -4,6 +4,7 @@ import Home from "./components/Home"
 import Topics from "./components/Topics"
 import NavBar from "./components/NavBar"
 import Topic from "./components/Topic"
+import Footer from "./components/Footer"
 import Notification from "./components/Notification"
 import CssBaseline from "@mui/material/CssBaseline"
 import { useQuery } from "@apollo/client"
@@ -13,8 +14,6 @@ import { useNotification } from "./hooks"
 import { useTheme } from "@mui/material/styles"
 import { useColorMode } from "./theme"
 import { useAuth } from "./hooks/index"
-import Footer from "./components/Footer"
-import Grid from "@mui/material/Grid"
 
 const App = () => {
   const theme = useTheme()
@@ -38,57 +37,47 @@ const App = () => {
   return (
     <>
       <CssBaseline />
-      <NavBar
-        setNotification={notification.setNotification}
-        theme={theme}
-        colorMode={colorMode}
-        setToken={setToken}
-        clearToken={clearToken}
-        getUser={getUser}
-        resetLoginTimeout={resetLoginTimeout}
-      />
-      <Grid
-        container
-        direction='row'
-        justifyContent='center'
-        alignItems='stretch'
-        style={{ height: "100vh", width: "100vw" }}
+      <div
+        style={{ display: "flex", minHeight: "100vh", flexDirection: "column" }}
       >
+        <NavBar
+          setNotification={notification.setNotification}
+          theme={theme}
+          colorMode={colorMode}
+          setToken={setToken}
+          clearToken={clearToken}
+          getUser={getUser}
+          resetLoginTimeout={resetLoginTimeout}
+        />
         <Notification
           message={notification.message}
           removeNotification={notification.removeNotification}
         />
-        {/* <Grid
-        container
-        direction='column'
-        justifyContent='center'
-        alignItems='stretch'
-        style={{ height: "100vh", width: "100vw" }}
-      > */}
-        <Routes>
-          <Route
-            path='/topics'
-            element={
-              <Topics
-                topics={topics.data.allTopics}
-                resetLoginTimeout={resetLoginTimeout}
-              />
-            }
-          />
-          <Route
-            path='/topics/:id'
-            element={
-              <Topic
-                topics={topics.data.allTopics}
-                resetLoginTimeout={resetLoginTimeout}
-              />
-            }
-          />
-          <Route path='/' element={<Home />} />
-        </Routes>
-      </Grid>
-
-      <Footer />
+        <div style={{ flex: "1" }}>
+          <Routes>
+            <Route
+              path='/topics'
+              element={
+                <Topics
+                  topics={topics.data.allTopics}
+                  resetLoginTimeout={resetLoginTimeout}
+                />
+              }
+            />
+            <Route
+              path='/topics/:id'
+              element={
+                <Topic
+                  topics={topics.data.allTopics}
+                  resetLoginTimeout={resetLoginTimeout}
+                />
+              }
+            />
+            <Route path='/' element={<Home />} />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
     </>
   )
 }

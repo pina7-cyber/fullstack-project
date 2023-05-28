@@ -9,14 +9,15 @@ import {
 } from "@mui/material"
 import { useState } from "react"
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined"
-
 import { useMatch } from "react-router-dom"
+
 const Topic = ({ topics, resetLoginTimeout }) => {
   const match = useMatch("/topics/:id")
 
   const topic = topics.find((t) => t.id === match.params.id)
 
   const comments = topic.comments
+  
   const [visible, setVisible] = useState(false)
   const toggleVisibility = () => {
     setVisible(!visible)

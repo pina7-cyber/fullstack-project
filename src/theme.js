@@ -21,6 +21,16 @@ export default function ToggleColorMode(props) {
       createTheme({
         palette: {
           mode,
+          primary: {
+            main: mode === "light" ? "#482271" : "#271010",
+          },
+          secondary: {
+            main: mode === "light" ? "#482271" : "#271010",
+          },
+          background: {
+            default: mode === "light" ? "#ffe4e4" : "#271010",
+            paper: mode === "light" ? "#ffe4e4" : "#271010",
+          },
         },
       }),
     [mode]
